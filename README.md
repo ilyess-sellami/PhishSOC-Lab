@@ -183,3 +183,38 @@ swaks --server localhost --from attacker@evil.com --to test@phishsoc.lab \
   --header "Subject: URGENT: Verify Your Bank Account Now" \
   --body "Dear user, please click this link to verify your bank account: http://malicious-site.com/login"
 ```
+
+### 3. Wazuh Rules Configuration
+
+**3.1 Enter the running Wazuh Manager container**
+
+```bash
+docker exec -it single-node-wazuh.manager-1 /bin/bash
+```
+
+Replace `single-node-wazuh.manager-1` with the actual container name from `docker ps`.
+
+**3.2 Navigate to the rules directory**
+
+```bash
+cd /var/ossec/etc/rules
+```
+
+**3.3 Add your phishing rules**
+
+You can create or edit the local_rules.xml file (You can get ready-to-use phishing detection rules directly from the **PhishSOC-Lab GitHub project** `config/local_rules.xml`):
+
+```bash
+nano local_rules.xml
+```
+
+Paste your phishing rules
+
+**Restart Wazuh Manager inside the container**
+
+```bash
+/var/ossec/bin/ossec-control restart
+```
+
+This reloads the rules **without needing to restart the entire container**.
+

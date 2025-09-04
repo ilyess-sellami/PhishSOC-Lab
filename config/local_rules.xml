@@ -1,0 +1,43 @@
+<ruleset>
+  <group name="phishing,email">
+    <rule id="100001" level="10">
+      <if_sid>18107</if_sid>
+      <match>Subject:.*(urgent|verify your account|password required|update your information)</match>
+      <description>Phishing email detected based on suspicious subject keywords</description>
+      <options>no_full_log</options>
+    </rule>
+  </group>
+
+  <group name="phishing,url">
+    <rule id="100002" level="12">
+      <match>https?://(bit\.ly|tinyurl\.com|maliciousdomain\.com|phishing-site\.net)</match>
+      <description>Phishing email detected with suspicious URL</description>
+      <options>no_full_log</options>
+    </rule>
+  </group>
+
+  <group name="phishing,attachment">
+    <rule id="100003" level="10">
+      <match>Attachment:.*\.(exe|scr|js|vbs|bat|cmd)$</match>
+      <description>Potential phishing email with malicious attachment</description>
+      <options>no_full_log</options>
+    </rule>
+  </group>
+
+  <group name="phishing,web">
+    <rule id="100004" level="12">
+      <match>GET /.*(maliciousdomain\.com|phishing-site\.net|fakebank\.com)</match>
+      <description>User accessed suspicious phishing website</description>
+      <options>no_full_log</options>
+    </rule>
+  </group>
+
+  <group name="phishing,intel">
+    <rule id="100005" level="15">
+      <match>https?://(.*)</match>
+      <if_sid>100100</if_sid>
+      <description>URL matches threat intelligence phishing list</description>
+      <options>no_full_log</options>
+    </rule>
+  </group>
+</ruleset>
