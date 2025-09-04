@@ -89,3 +89,30 @@ This lab demonstrates how to:
    - Alerts and logs are processed and stored by the **Wazuh Indexer (OpenSearch)**.
 5. **Visualization**
    - The **Wazuh Dashboard** provides SOC analysts with real-time visualization of phishing attempts, alerts, and threat hunting dashboards.
+
+## 🚀 Deployment Guide
+
+### 1. Wazuh Deployment & Configuration
+1.1 Clone the official Wazuh Docker repo:
+```bash
+git clone https://github.com/wazuh/wazuh-docker.git
+cd wazuh-docker/single-node
+```
+
+1.2 Run the following command to generate the desired certificates:
+```bash
+docker-compose -f generate-indexer-certs.yml run --rm generator
+```
+
+1.3 Start Wazuh single-node containers:
+```bash
+docker-compose up -d
+```
+- This deploys Wazuh Manager, Indexer, and Dashboard containers.
+- Wait for all containers to be fully up (docker ps to verify).
+
+1.4 Verify the deployment:
+```bash
+docker logs wazuh.manager
+```
+- Ensure no errors and that Wazuh Manager started successfully.
