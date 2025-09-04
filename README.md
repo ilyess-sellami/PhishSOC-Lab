@@ -93,40 +93,47 @@ This lab demonstrates how to:
 ## 🚀 Deployment Guide
 
 ### 1. Wazuh Deployment & Configuration
-1.1 Clone the official Wazuh Docker repo:
+
+**1.1 Clone the official Wazuh Docker repo:**
+
 ```bash
 git clone https://github.com/wazuh/wazuh-docker.git
 cd wazuh-docker/single-node
 ```
 
-1.2 Run the following command to generate the desired certificates:
+**1.2 Run the following command to generate the desired certificates:**
+
 ```bash
 docker-compose -f generate-indexer-certs.yml run --rm generator
 ```
 
-1.3 Start Wazuh single-node containers:
+**1.3 Start Wazuh single-node containers:**
+
 ```bash
 docker-compose up -d
 ```
+
 - This deploys Wazuh Manager, Indexer, and Dashboard containers.
 - Wait for all containers to be fully up (docker ps to verify).
 
-1.4 Verify the deployment:
+**1.4 Verify the deployment:**
+
 ```bash
 docker logs wazuh.manager
 ```
+
 - Ensure no errors and that Wazuh Manager started successfully.
 
 ### 2. Mail Server Deployment & Testing
 
-2.1 Clone PhishSOC-Lab Project
+**2.1 Clone PhishSOC-Lab Project**
 
 ```bash 
 git clone https://github.com/ilyess-sellami/PhishSOC-Lab.git
 cd PhishSOC-Lab/mailserver
 ```
 
-2.2 Run Mail Server
+**2.2 Run Mail Server**
 
 The project already contains a minimal `docker-compose.yml` for a test mail server.
 
@@ -142,7 +149,7 @@ This will run a simple Postfix + Dovecot mail server exposing:
 
 - IMAP: localhost:143
 
-2.3 Add a Mailbox
+**2.3 Add a Mailbox**
 
 Create a test mailbox inside the container:
 
@@ -150,7 +157,7 @@ Create a test mailbox inside the container:
 docker exec -it mailserver setup email add test@phishsoc.lab 'Test1234'
 ```
 
-2.4 Verify mailbox creation
+**2.4 Verify mailbox creation**
 
 ```bash
 docker exec -it mailserver setup email list
@@ -158,7 +165,7 @@ docker exec -it mailserver setup email list
 
 You should see your new mailbox.
 
-2.5 Send a Test Phishing Email
+**2.5 Send a Test Phishing Email**
 
 Use `swaks` to simulate a phishing message
 
