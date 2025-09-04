@@ -116,3 +116,63 @@ docker-compose up -d
 docker logs wazuh.manager
 ```
 - Ensure no errors and that Wazuh Manager started successfully.
+
+### 2. Mail Server Deployment & Testing
+
+2.1 Clone PhishSOC-Lab Project
+
+```bash 
+git clone https://github.com/ilyess-sellami/PhishSOC-Lab.git
+cd PhishSOC-Lab/mailserver
+```
+
+2.2 Run Mail Server
+
+The project already contains a minimal `docker-compose.yml` for a test mail server.
+
+Start it with:
+
+```bash
+docker compose up -d
+```
+
+This will run a simple Postfix + Dovecot mail server exposing:
+
+- SMTP: localhost:25
+
+- IMAP: localhost:143
+
+2.3 Add a Mailbox
+
+Create a test mailbox inside the container:
+
+```bash
+docker exec -it mailserver setup email add test@phishsoc.lab 'Test1234'
+```
+
+2.4 Verify mailbox creation
+
+```bash
+docker exec -it mailserver setup email list
+```
+
+You should see your new mailbox.
+
+2.5 Send a Test Phishing Email
+
+Use `swaks` to simulate a phishing message
+
+Install swaks (on Ubuntu/Mac):
+
+```bash
+sudo apt-get install swaks   # Linux
+brew install swaks           # Mac
+```
+
+Send a fake phishing email:
+
+```bash
+swaks --server localhost --from attacker@evil.com --to test@phishsoc.lab \
+  --header "Subject: URGENT: Verify Your Bank Account Now" \
+  --body "Dear user, please click this link to verify your bank account: http://malicious-site.com/login"
+```
