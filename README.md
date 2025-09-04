@@ -44,4 +44,31 @@ This lab demonstrates how to:
 
 ---
 
+## ⚙️ System Requirements
+***Minimum Requirements***
 
+- **OS**: Linux (Ubuntu 20.04+ recommended) / macOS / Windows with Docker Desktop
+
+- **CPU**: 2 cores minimum (4+ recommended)
+
+- **RAM**: 4 GB minimum (8 GB recommended for smooth performance)
+
+- **Disk Space**: 20 GB free
+
+**Software Requirements**
+
+- Docker **>= 20.x**
+
+- Docker Compose **>= 1.29.x**
+
+- Git **>= 2.x** (to clone the repository)
+
+**Network Requirements**
+
+- Wazuh Dashboard: `https://localhost:5601`
+
+- Wazuh API: `https://localhost:55000`
+
+- Mail Server (Postfix/Dovecot): exposed ports (25, 143, 993)
+
+- Ensure ports are not blocked by firewall
