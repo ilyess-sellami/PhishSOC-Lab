@@ -72,3 +72,20 @@ This lab demonstrates how to:
 - Mail Server (Postfix/Dovecot): exposed ports (25, 143, 993)
 
 - Ensure ports are not blocked by firewall
+
+---
+
+## 🏛️ Architecture
+**🔄 Flow Explanation**
+1. **Phishing Email Simulation**
+   - A **Postfix/Dovecot mail server** generates and receives simulated phishing emails.
+   - These emails may contain suspicious subjects, domains, or attachments.
+2. **Log Collection**
+   - The **Wazuh Agent** installed on the mail server forwards log files (Postfix, Dovecot, syslog) to the **Wazuh Manager**.
+3. **Detection & Rules**
+   - The **Wazuh Manager** applies **custom phishing detection rules**.
+   - Suspicious emails are flagged based on IOC matches (domains, hashes, URLs, attachment names).
+4. **Indexing & Storage**
+   - Alerts and logs are processed and stored by the **Wazuh Indexer (OpenSearch)**.
+5. **Visualization**
+   - The **Wazuh Dashboard** provides SOC analysts with real-time visualization of phishing attempts, alerts, and threat hunting dashboards.
