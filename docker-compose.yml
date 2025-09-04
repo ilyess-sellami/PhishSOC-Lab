@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mailserver:
+    image: mailserver/docker-mailserver:edge
+    container_name: mailserver
+    hostname: mail
+    domainname: phishsoc.lab
+    ports:
+      - "25:25"    # SMTP
+      - "143:143"  # IMAP
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
