@@ -210,3 +210,60 @@ docker logs -f single-node-wazuh.manager-1
 
 - Check that there are no XML errors and that your phishing rules are loaded successfully.
 
+
+### 4. Install Wazuh Agent on the Mail Server (Docker)
+
+**4.1 Open Wazuh Dashboard**
+
+- Go to Wazuh dashboard
+- Navigate to Agents → Add agent
+
+**4.2 Select the Agent**
+
+- Choose **Linux DEB amd64**
+- Server address: `<your-wazuh-ip-address>`
+- Agent name: `mail-server-agent`
+- Group: `default`
+
+**4.3 Run the installation commands inside the mail server container**
+
+Enter the container:
+
+```bash
+docker exec -it mailserver bash
+```
+
+(where `mailserver` is your container name).
+
+Update packages inside the container:
+
+```bash
+apt-get update
+```
+
+Then run:
+
+```bash
+wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.12.0-1_amd64.deb && \
+WAZUH_MANAGER='<your-wazuh-ip-address>' WAZUH_AGENT_NAME='mail-server-agent' dpkg -i ./wazuh-agent_4.12.0-1_amd64.deb
+```
+
+**4.4 Start the agent**
+
+```bash
+systemctl daemon-reload
+systemctl enable wazuh-agent
+systemctl start wazuh-agent
+```
+
+**4.5 Verify agent is running**
+
+```bash
+systemctl status wazuh-agent
+tail -f /var/ossec/logs/ossec.log
+```
+
+**4.6 Check Dashboard**
+
+- Go back to **Wazuh Dashboard → Agents list**.
+- You should see `mail-server-agent` with status **Active ✅**.
