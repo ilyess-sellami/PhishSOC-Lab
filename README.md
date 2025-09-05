@@ -164,9 +164,9 @@ docker compose up -d
 
 This will run a simple Postfix + Dovecot mail server exposing:
 
-- SMTP: localhost:25
+- **SMTP**: `localhost:25`
 
-- IMAP: localhost:143
+- **IMAP**: `localhost:143`
 
 **2.3 Add a Mailbox**
 
