@@ -90,6 +90,10 @@ This lab demonstrates how to:
 5. **Visualization**
    - The **Wazuh Dashboard** provides SOC analysts with real-time visualization of phishing attempts, alerts, and threat hunting dashboards.
 
+
+---
+
+
 ## 🚀 Deployment Guide
 
 ### 1. Wazuh Deployment & Configuration
