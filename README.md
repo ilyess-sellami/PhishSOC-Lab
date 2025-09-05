@@ -184,37 +184,24 @@ swaks --server localhost --from attacker@evil.com --to test@phishsoc.lab \
   --body "Dear user, please click this link to verify your bank account: http://malicious-site.com/login"
 ```
 
-### 3. Wazuh Rules Configuration
+3. Wazuh Rules Configuration
 
-**3.1 Enter the running Wazuh Manager container**
+3.1 Copy your phishing rules into the running Wazuh Manager container
 
-```bash
-docker exec -it single-node-wazuh.manager-1 /bin/bash
-```
+docker cp local_rules.xml single-node-wazuh.manager-1:/var/ossec/etc/rules/local_rules.xml
 
-Replace `single-node-wazuh.manager-1` with the actual container name from `docker ps`.
 
-**3.2 Navigate to the rules directory**
+Replace single-node-wazuh.manager-1 with the actual container name from docker ps.
+You can use your example file from /config/local_rules.xml on your GitHub project.
 
-```bash
-cd /var/ossec/etc/rules
-```
+3.2 Restart the Wazuh Manager container
 
-**3.3 Add your phishing rules**
+docker restart single-node-wazuh.manager-1
 
-You can create or edit the local_rules.xml file (You can get ready-to-use phishing detection rules directly from the **PhishSOC-Lab GitHub project** `config/local_rules.xml`):
 
-```bash
-nano local_rules.xml
-```
+3.3 Verify Wazuh Manager logs
 
-Paste your phishing rules
+docker logs -f single-node-wazuh.manager-1
 
-**Restart Wazuh Manager inside the container**
 
-```bash
-/var/ossec/bin/ossec-control restart
-```
-
-This reloads the rules **without needing to restart the entire container**.
-
+Check that there are no XML errors and that your phishing rules are loaded successfully.
