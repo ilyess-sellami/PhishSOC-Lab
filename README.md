@@ -215,6 +215,8 @@ docker cp local_rules.xml single-node-wazuh.manager-1:/var/ossec/etc/rules/local
 
 - You can use your example file from /config/local_rules.xml on your GitHub project.
 
+- ⚠️ Note: The local_rules.xml provided are just for testing. You can create your own rules and test them following the steps below.
+
 **3.2 Restart the Wazuh Manager container**
 
 ```bash
