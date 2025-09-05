@@ -69,7 +69,7 @@ This lab demonstrates how to:
 
 - Wazuh API: `https://localhost:55000`
 
-- Mail Server (Postfix/Dovecot): exposed ports (25, 143, 993)
+- Mail Server (Postfix/Dovecot): exposed ports (25, 143)
 
 - Ensure ports are not blocked by firewall
 
@@ -271,3 +271,6 @@ tail -f /var/ossec/logs/ossec.log
 
 - Go back to **Wazuh Dashboard → Agents list**.
 - You should see `mail-server-agent` with status **Active ✅**.
+
+
+## 5. simulate phishing attaque
