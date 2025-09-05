@@ -326,3 +326,34 @@ You should see the email being delivered to `test@phishsoc.lab`.
 3. Add a filter: `agent.name: "mail-server-agent"`
 
 You should now see alerts triggered by your test phishing email based on the rules in `local_rules.xml`.
+
+
+---
+
+## ✅ Conclusion
+
+**PhishSOC-Lab** provides a complete, hands-on environment for learning and practicing phishing detection and analysis in a SOC setup. By following this lab, you have:
+
+- Successfully deployed a **Wazuh single-node SIEM** using Docker.
+- Simulated phishing attacks using a **Postfix/Dovecot mail server**.
+- Forwarded mail server logs to Wazuh using the **Wazuh Agent**.
+- Created and tested **custom Wazuh rules** to detect phishing patterns.
+- Monitored alerts and analyzed incidents through the **Wazuh Dashboard**.
+- Practiced **IOC extraction and threat hunting** in a controlled sandbox environment.
+
+This lab is ideal for SOC analysts, cybersecurity students, and engineers who want to:
+
+- Understand how phishing attacks manifest in logs.
+- Learn to configure SIEM rules for real-world detection.
+- Gain practical experience in monitoring, alerting, and incident response.
+
+With this foundation, you can expand the lab by integrating **multiple agents, advanced phishing scenarios, or automated alert responses**, further enhancing your SOC capabilities.
+
+---
+
+🔗 **Next Steps / Recommendations:**
+
+1. Experiment with more **complex phishing emails** (different headers, attachments, links).  
+2. Integrate additional **log sources** like Windows Event Logs or Web Proxy logs.  
+3. Automate alert response using **Wazuh rules + scripts** or a SOAR platform.  
+4. Share your findings and rules with your team to **improve organizational phishing defenses**.
