@@ -140,6 +140,9 @@ docker logs wazuh.manager
 
 ![Docker Run Wazuh](screenshots/wazuh_login_page.png)
 
+
+- You will then be forwarded to the **dashboard admin interface**.
+
 ![Docker Run Wazuh](screenshots/wazuh_dashboard_page.png)
 
 
