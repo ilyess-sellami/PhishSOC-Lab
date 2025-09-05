@@ -220,7 +220,7 @@ docker logs -f single-node-wazuh.manager-1
 **4.1 Open Wazuh Dashboard**
 
 - Go to Wazuh dashboard
-- Navigate to Agents → Add agent
+- Navigate to **Agents → Add agent**
 
 **4.2 Select the Agent**
 
