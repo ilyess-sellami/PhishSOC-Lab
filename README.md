@@ -120,6 +120,8 @@ docker-compose up -d
 - This deploys Wazuh Manager, Indexer, and Dashboard containers.
 - Wait for all containers to be fully up (docker ps to verify).
 
+![Docker Run Wazuh](screenshots/docker_run_wazuh.png)
+
 **1.4 Verify the deployment:**
 
 ```bash
@@ -127,6 +129,19 @@ docker logs wazuh.manager
 ```
 
 - Ensure no errors and that Wazuh Manager started successfully.
+
+**1.5 Open Wazuh Dashboard:**
+
+- Go to `https://localhost` in your browser.
+
+- Log in with the default credentials:
+   - Username: `admin`
+   - Password: `SecretPassword`
+
+![Docker Run Wazuh](screenshots/wazuh_login_page.png)
+
+![Docker Run Wazuh](screenshots/wazuh_dashboard_page.png)
+
 
 ### 2. Mail Server Deployment & Testing
 
@@ -229,6 +244,8 @@ docker logs -f single-node-wazuh.manager-1
 - Agent name: `mail-server-agent`
 - Group: `default`
 
+![Wazuh Add Agent](screenshots/wazuh_add_agent.png)
+
 **4.3 Run the installation commands inside the mail server container**
 
 Enter the container:
@@ -272,5 +289,40 @@ tail -f /var/ossec/logs/ossec.log
 - Go back to **Wazuh Dashboard → Agents list**.
 - You should see `mail-server-agent` with status **Active ✅**.
 
+![Wazuh Agents List](screenshots/wazuh_agents_list.png)
 
 ## 5. simulate phishing attaque
+
+**5.1 Send a test phishing email using `swaks`**
+
+```bash
+swaks --server localhost --from attacker@evil.com --to test@phishsoc.lab \
+--header "Subject: URGENT: Verify Your Bank Account Now" \
+--body "Click this malicious link: http://maliciousdomain.com"
+```
+
+- `--server localhost` → connect to the local mail server
+- `--from` → sender email
+- `--to` → recipient email
+- `--header` → subject line
+- `--body` → email body, containing a test malicious URL
+
+**5.2 Verify that the email reached the mailbox**
+
+Check your mail server logs (inside the mail container):
+
+```bash
+tail -f /var/log/mail/mail.log
+```
+
+You should see the email being delivered to `test@phishsoc.lab`.
+
+**5.3 Filter alerts in Wazuh Discover**
+
+1. Open Wazuh **Dashboard → Discover**.
+
+2. Select the index: `wazuh-alerts-*`.
+
+3. Add a filter: `agent.name: "mail-server-agent"`
+
+You should now see alerts triggered by your test phishing email based on the rules in `local_rules.xml`.
