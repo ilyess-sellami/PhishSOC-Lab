@@ -1,8 +1,13 @@
-# 🛡️ PhishSOC-Lab – SOC Phishing Detection & Analysis Sandbox
+# 🛡️ PhishSOC-Lab
+
+**SOC Phishing Detection & Analysis Sandbox**
+
+---
 
 ![PhishSOC-Lab](/screenshots/PhishSOC-Lab.png)
 
 ---
+## 🔎 Overview 
 
 **PhishSOC-Lab** is a hands-on cybersecurity project designed to help analysts and engineers **detect, analyze, and respond to phishing threats** in a simulated Security Operations Center (SOC) environment.
 
